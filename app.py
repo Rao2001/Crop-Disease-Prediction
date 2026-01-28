@@ -58,8 +58,14 @@ if not os.path.exists(MODEL_PATH):
 model = load_model(MODEL_PATH)
 
 if model is None:
-    st.warning("⚠️ Model file not found at `./models/crop_disease_model.h5`. Please run the training notebook to generate the model first.")
-    # Option to use a 'demo mode' could go here, but for now we'll just wait for the model.
+    st.warning("⚠️ Model file not found. Please check 'Debug Info' below.")
+    with st.expander("Debug Info (Show this to your developer)"):
+        st.write(f"Current Directory: `{os.getcwd()}`")
+        st.write("Files in Root:", os.listdir('.'))
+        if os.path.exists('./models'):
+            st.write("Files in ./models:", os.listdir('./models'))
+        else:
+            st.write("❌ './models' directory does NOT exist.")
 else:
     st.success("✅ AI Model Loaded Successfully")
 
