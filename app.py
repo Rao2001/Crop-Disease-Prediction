@@ -50,7 +50,11 @@ st.title("🌱 Crop Disease Prediction & Analysis")
 st.markdown("### Detect diseases accurately and get instant remedies.")
 
 # --- Model Loading ---
+# --- Model Loading ---
 MODEL_PATH = './models/crop_disease_model.h5'
+if not os.path.exists(MODEL_PATH):
+    MODEL_PATH = './crop_disease_model.h5' # Fallback to root
+
 model = load_model(MODEL_PATH)
 
 if model is None:
